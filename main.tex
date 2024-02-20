@@ -1,0 +1,113 @@
+% !TeX program = lualatex
+\begin{filecontents*}{\jobname-url.mst}
+% Input style specifiers
+keyword "\\urlentry"
+% Output style specifiers
+preamble "\\begin{theurls}"
+postamble "\\end{theurls}\n"
+group_skip ""
+headings_flag 0  
+item_0 "\n\\urlitem{"
+delim_0 "}{"
+delim_t "}"
+line_max 500
+\end{filecontents*}
+
+\RequirePackage{scrlfile}
+\AfterClass{article}{
+  \RequirePackage[hyphens,spaces,obeyspaces]{url}
+}
+\documentclass[
+	english,
+	twocolumn,
+	marginpar=false,
+	papersize=a4paper,
+	accentcolor=9c,
+    IMRAD=false,
+	]{tudapub}
+
+\usepackage{etoolbox}
+
+%\AtEndPreamble{\hypersetup{breaklinks}}
+
+\usepackage[english]{babel}
+\usepackage[babel]{csquotes}
+\usepackage{caption} % https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#Issues_with_links_to_tables_and_figures_handled_by_hyperref
+\usepackage{fancyvrb}
+\usepackage{varwidth}
+\usepackage{hologo}
+\usepackage{amssymb}
+\usepackage[backend=biber,style=numeric,sorting=ynt]{biblatex}
+\usepackage{hyperref}
+\usepackage[toc,acronym,automake=immediate]{glossaries}
+%\usepackage[undefaction=warn]{glossaries-extra}
+\usepackage[most]{tcolorbox}
+\usepackage[official]{eurosym}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% allow better line breaks in URLs
+\gappto{\UrlBreaks}{\do\_}
+\gappto{\UrlBreaks}{\UrlOrds}
+
+% colorbox
+\newtcolorbox{myframe}[1][]{
+  enhanced,
+  arc=0pt,
+  outer arc=0pt,
+  colback=TUDa-9c,
+  boxrule=0.8pt,
+  #1
+}
+
+% listings
+\lstdefinestyle{BashInputStyle}{
+  language=bash,
+  basicstyle=\small\sffamily,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=3pt,
+  frame=tb,
+  columns=fullflexible,
+  backgroundcolor=\color{yellow!10},
+  linewidth=0.9\linewidth,
+  xleftmargin=0.1\linewidth
+}
+
+% glossary
+\input{glossary}
+\input{util/urls}
+\input{util/problems}
+
+% bibliography
+\addbibresource{signum.bib}
+
+% custom commands
+\newcommand{\T}[1]{\texttt#1}
+\newcommand{\Signum}{\textit{Signum!}}
+\newcommand{\funfact}[1]{%
+\footnote{%
+  %{\vspace{3mm}\begin{center}
+  %  \framebox[0.8\columnwidth]{%
+  %    \parbox{0.75\columnwidth}{%
+        \textbf{\color{TUDa-9c}Fun Fact} #1
+        %{\color{black}\normalfont #1}%
+  %    }%
+  %  \par}
+  %\end{center}}%
+}}
+%\vspace{3mm}}
+
+% ----------------------------------------------------------
+
+% TODO: Introduction, Rust, Macros
+
+\begin{document}
+\input{0intro}
+\input{1atari}
+\input{2signum}
+\input{3modern}
+\input{4outro}
+\end{document}

@@ -1,0 +1,43 @@
+\section*{Conclusion}
+\label{sec:conclusion}
+\addcontentsline{toc}{section}{\nameref{sec:conclusion}}
+
+Working to restore a document file format requires a lot of knowledge in related domains. This project allowed me to learn more about operating systems, fonts, text encoding, page definition languages, and image compression.
+
+My initial motivation for this project was a box with floppy disks that my parents used about 25 to 30 years ago. I've known for a while that one of the disks likely contained my fathers masters thesis (\textit{Magister Artium}) and that it was written in Signum, but my understanding of legacy computer systems was not sufficient at the time when I first learned about it.
+
+At this point, the project has progressed far enough that I can take the thesis files which I extracted from one of the floppy disks, run them through my system and get a searchable PDF out of it. I've also been in contact with a small number of people that did not have such a tool available to them and graciously supported the project by sending me their original documents.
+
+% - Make this possible for others
+I suspect that there are still a number of printed theses sitting in German university libraries whose authors still have the original Signum! files and which could be digitized using my tool, but I think it would be very difficult to identify even a small group of them.
+
+%From contacting the person that created \textbf{TEXTCONV.PRG}, I know that a lot of people needed and received help with recovering Signum files around the year 2000. 
+
+% - Outlook: Can be useful to learn from something that was there instead of reinventing the wheel. ref: rust -> TWIR
+Finally, I think that \Signum{} is a good example for why it can be useful to learn from something that was created in the past, rather than inventing a new systems. To this day, there are students discussing whether \LaTeX or Microsoft word are more appropriate for homework in university classes. The ''best'' method would probably be a mixture of the two systems but for all practical purposes, the answer is to use whatever fits best to the author and their, possibly non-standard, requirements.
+
+\subsection*{Future Work}
+\label{subsec:conclusion}
+\addcontentsline{toc}{subsection}{\nameref{subsec:conclusion}}
+
+While this paper is now complete, there is a lot more that I want to achieve in terms of tools related to \Signum{}:
+
+Firstly, I want to continue the work on the tool that exports documents to PDF and add support for Unicode encoding (\ref{sec:encoding}) to the fonts that are embedded into the output files. This requires creating and loading mapping files for each character set.
+
+Then, I want to create a tool that allows the creation of Unicode mapping files with a graphical user interface. The end goal is to have a tool that presents one character after the other and the default encoding for that character and asks the user to confirm the encoding, type in the correct Unicode code-point or mark the character as missing.
+
+I want to investigate converting \Signum{} fonts into \textit{OpenType} fonts, or any other font format that would work on the web. The goal here is to have fonts available that have the same dimensions as the originals and can be used in contexts where I don't control the font rendering.
+
+Next, I want to create a tool that turns \Signum{} documents into web pages. This works best, if the previous tasks are already complete, but may work reasonably well for simple documents.
+
+Finally, I want to investigate the \textit{ESC/P} instructions that \Signum{} sends to printers to get a better understanding of how it manipulates character bitmaps to produce bold, italic, wide, tall and short font variants (\ref{sec:font-variants}).
+
+{\scriptsize
+I want to thank the author, Franz Schmerbeck, for creating this program; Volker Ritzhaupt and Oliver Buchmann of ASH for publishing it, providing support to original users and co-authoring the handbook \cite{schmerbeck1998signum} and the user guide \cite{ritzhaupt1988signum}; Lonny Pursell for helping me find a working image decompression program; Thomas Tempelmann for uploading example files with images and other people that I've reached out to over the course of this project.}
+
+\printglossary[type=\acronymtype]
+\printglossary
+\listoffigures
+\printbibliography
+%\printurls
+\checkproblems

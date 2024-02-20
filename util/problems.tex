@@ -1,0 +1,28 @@
+% https://gist.github.com/martinarroyo/b9e0a963ad27169a6eee
+\newif\ifproblems
+%\problemstrue % comment out to hide problems
+\newcounter{problems}
+\setcounter{problems}{0}
+
+\newcommand{\problem}[2]{%
+    \ifproblems
+    \stepcounter{problems}%
+    \fbox{%
+    \color{blue}#1%
+    {\color{black}: \normalfont #2}}
+    \fi}
+
+\newcommand{\citationneeded}[1]{\problem{Citation needed}{#1}}
+\newcommand{\fixme}[1]{\problem{FixMe}{#1}}
+
+\newcommand{\checkproblems}{
+	\ifproblems
+	\ifnum\value{problems} > 0
+	\begin{center}
+		You have \arabic{problems} problems(s). Bad!
+	\end{center}
+	\else
+	No problems. Good!
+	\fi
+	\fi
+}
